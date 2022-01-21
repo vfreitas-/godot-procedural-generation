@@ -26,11 +26,12 @@ func generate_world(data: WorldData):
 			var pos := Vector2(x, y)
 			
 			var tile := -1
-			var noise := data.noise_map.get_noise_2dv(pos * data.scale)
+			var noise := data.elevation_noise.get_noise_2dv(pos * data.scale)
+			var lerp_noise := range_lerp(noise, -1, 1, 0, 1)
 			
 			for t in data.terrains:
 				t = t as Terrain
-				if noise <= t.height and tile == -1:
+				if lerp_noise <= t.height and tile == -1:
 					tile = t.tile_id
 					break
 			
