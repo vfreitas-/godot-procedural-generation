@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Placeholder-Tilemap.png-55e6a00f741af6e6798de5b55c315629.stex"
+path="res://.import/Placeholder-Tilemap.png-33f1be09ca910b80a150c5d7459e049a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d/Placeholder-Tilemap.png"
-dest_files=[ "res://.import/Placeholder-Tilemap.png-55e6a00f741af6e6798de5b55c315629.stex" ]
+source_file="res://2d-terrain/Placeholder-Tilemap.png"
+dest_files=[ "res://.import/Placeholder-Tilemap.png-33f1be09ca910b80a150c5d7459e049a.stex" ]
 
 [params]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://PlanetMeshFace.gd" type="Script" id=1]
-[ext_resource path="res://Planet.gd" type="Script" id=2]
-[ext_resource path="res://PlanetData.gd" type="Script" id=3]
-[ext_resource path="res://PlanetNoise.gd" type="Script" id=4]
-[ext_resource path="res://PlanetMaterial.tres" type="Material" id=5]
+[ext_resource path="res://3d-planet/PlanetMeshFace.gd" type="Script" id=1]
+[ext_resource path="res://3d-planet/Planet.gd" type="Script" id=2]
+[ext_resource path="res://3d-planet/PlanetData.gd" type="Script" id=3]
+[ext_resource path="res://3d-planet/PlanetNoise.gd" type="Script" id=4]
+[ext_resource path="res://3d-planet/PlanetMaterial.tres" type="Material" id=5]
 
 [sub_resource type="Gradient" id=22]
 offsets = PoolRealArray( 0, 0.0923695, 0.170683, 0.562249, 0.805221 )

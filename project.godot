@@ -12,27 +12,27 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "PlanetData",
 "language": "GDScript",
-"path": "res://PlanetData.gd"
+"path": "res://3d-planet/PlanetData.gd"
 }, {
 "base": "MeshInstance",
 "class": "PlanetMeshFace",
 "language": "GDScript",
-"path": "res://PlanetMeshFace.gd"
+"path": "res://3d-planet/PlanetMeshFace.gd"
 }, {
 "base": "Resource",
 "class": "PlanetNoise",
 "language": "GDScript",
-"path": "res://PlanetNoise.gd"
+"path": "res://3d-planet/PlanetNoise.gd"
 }, {
 "base": "Resource",
 "class": "Terrain",
 "language": "GDScript",
-"path": "res://2d/Terrain.gd"
+"path": "res://2d-terrain/Terrain.gd"
 }, {
 "base": "Resource",
 "class": "WorldData",
 "language": "GDScript",
-"path": "res://2d/WorldData.gd"
+"path": "res://2d-terrain/WorldData.gd"
 } ]
 _global_script_class_icons={
 "PlanetData": "",
@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ProceduralPlanets"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://3d-planet/Main.tscn"
 config/icon="res://icon.png"
 
 [physics]

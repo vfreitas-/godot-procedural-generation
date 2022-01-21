@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://2d/World.gd" type="Script" id=1]
-[ext_resource path="res://2d/TileMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://2d/WorldData.gd" type="Script" id=3]
-[ext_resource path="res://2d/Terrain.gd" type="Script" id=4]
+[ext_resource path="res://2d-terrain/World.gd" type="Script" id=1]
+[ext_resource path="res://2d-terrain/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://2d-terrain/WorldData.gd" type="Script" id=3]
+[ext_resource path="res://2d-terrain/Terrain.gd" type="Script" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=2]
 seed = 13
