@@ -30,6 +30,7 @@ func generate_level() -> void:
 	fill_outside()
 	fill_rooms(bsp_tree.rooms)
 	fill_rooms_connections(bsp_tree.connections)
+	clear_deadends()
 	tilemap.update_bitmask_region(Vector2.ZERO, Vector2(map_w, map_h))
 	
 func fill_outside():
@@ -51,5 +52,28 @@ func fill_rooms_connections(connections: Array) -> void:
 				if(tilemap.get_cell(i, j) == Tiles.OUTSIDE): 
 					tilemap.set_cell(i, j, Tiles.GROUND)
 
-func set_redraw(value: bool) -> void:
+func clear_deadends():
+	var done = false
+
+	while !done:
+		done = true
+
+		for cell in tilemap.get_used_cells():
+			if tilemap.get_cellv(cell) != Tiles.GROUND: continue
+
+			var roof_count = check_nearby(cell.x, cell.y)
+			if roof_count == 3:
+				tilemap.set_cellv(cell, Tiles.OUTSIDE)
+				done = false
+
+# check in 4 dirs to see how many tiles are roofs
+func check_nearby(x, y):
+	var count = 0
+	if tilemap.get_cell(x, y-1)   == Tiles.OUTSIDE:  count += 1
+	if tilemap.get_cell(x, y+1)   == Tiles.OUTSIDE:  count += 1
+	if tilemap.get_cell(x-1, y)   == Tiles.OUTSIDE:  count += 1
+	if tilemap.get_cell(x+1, y)   == Tiles.OUTSIDE:  count += 1
+	return count
+
+func set_redraw(_value: bool) -> void:
 	generate_level()

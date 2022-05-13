@@ -29,7 +29,6 @@ func generate():
 	create_leaf(0)
 	create_rooms()
 	join_rooms()
-#	clear_deadends()
 
 func start_tree():
 	rooms = []
