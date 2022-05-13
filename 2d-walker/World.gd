@@ -1,8 +1,8 @@
 tool
 extends Node2D
 
-const Player = preload("res://2d-walker/Player.tscn")
-const Exit = preload("res://2d-walker/Exit.tscn")
+const Player = preload("res://common/Player.tscn")
+const Exit = preload("res://common/Exit.tscn")
 
 #export(bool) var render = false setget set_render
 
