@@ -4,8 +4,6 @@ extends Node2D
 export(bool) var redraw = false setget set_redraw
 
 export(Rect2) var map_bounds = Rect2(1, 1, 80, 50)
-export(int) var map_w = 80
-export(int) var map_h = 50
 export(int) var min_room_size = 8
 export(float, 0.2, 0.5) var min_room_factor = 0.4
 
@@ -39,7 +37,7 @@ func generate_level() -> void:
 	fill_rooms(bsp_tree.rooms)
 	fill_rooms_connections(bsp_tree.connections)
 	clear_deadends()
-	tilemap.update_bitmask_region(Vector2.ZERO, Vector2(map_w, map_h))
+	tilemap.update_bitmask_region(Vector2.ZERO, map_bounds.size)
 	
 	render_props(bsp_tree)
 	
@@ -67,6 +65,7 @@ func fill_rooms(rooms: Array = []):
 			for y in range(r.y, r.y + r.h):
 				tilemap.set_cell(x, y, Tiles.GROUND)
 
+# here we can do a walker to create more realistic connections
 func fill_rooms_connections(connections: Array) -> void:
 	for rect in connections:
 		for i in range(rect.position.x, rect.position.x + rect.size.x):
@@ -82,6 +81,7 @@ func fill_rooms_connections(connections: Array) -> void:
 				if(tilemap.get_cell(i, j) == Tiles.OUTSIDE): 
 					tilemap.set_cell(i, j, Tiles.GROUND)
 
+# improve the clear deadends to clear any connection not connecting two rooms
 func clear_deadends():
 	var done = false
 
