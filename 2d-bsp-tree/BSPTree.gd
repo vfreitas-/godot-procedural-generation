@@ -2,8 +2,6 @@ tool
 extends Node
 class_name BSPTree
 
-enum Tiles { GROUND, TREE, WATER, ROOF }
-
 var bounds = Rect2()
 var min_room_size = 0
 var min_room_factor = 0.0
