@@ -1,20 +1,12 @@
-# godot-procedural-generation
+# Godot Procedural Generation
 
-Repo for some testing and examples.
+Repo for some testing and examples. Each folder will have it own readme with explanation and references.
 
 
-## Folders
+## Awesome links
 
-### `2d-terrain` 
+Here is a list of links of great algorithms that I'll try to apply here in the future.
 
-2D procedural map generation with multiple biomes and elevations. 
-
-*References:*
-- https://www.redblobgames.com/maps/terrain-from-noise/
-
-### `3d-planet`
-
-A 3d planet sphere procedural mesh generation
-
-*References:*
-- https://www.youtube.com/watch?v=hHRhDEVwDho&t=0s video by Ombarus
+- https://blog.unity.com/games/children-of-morta-bringing-order-to-the-chaos-of-procedural-generation)
+- https://abitawake.com/news/articles/procedural-generation-with-godot-creating-caves-with-cellular-automata
+- https://github.com/AtTheMatinee/dungeon-generation/blob/master/dungeonGenerationAlgorithms.py
