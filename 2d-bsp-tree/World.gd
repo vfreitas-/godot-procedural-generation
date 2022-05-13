@@ -71,6 +71,14 @@ func fill_rooms_connections(connections: Array) -> void:
 	for rect in connections:
 		for i in range(rect.position.x, rect.position.x + rect.size.x):
 			for j in range(rect.position.y, rect.position.y + rect.size.y):
+				if tilemap.get_cell(i, j-1) == Tiles.OUTSIDE: 
+					tilemap.set_cell(i, j-1, Tiles.GROUND)
+				if tilemap.get_cell(i, j+1) == Tiles.OUTSIDE:
+					tilemap.set_cell(i, j+1, Tiles.GROUND)
+				if tilemap.get_cell(i-1, j) == Tiles.OUTSIDE:  
+					tilemap.set_cell(i-1, j, Tiles.GROUND)
+				if tilemap.get_cell(i+1, j) == Tiles.OUTSIDE:  
+					tilemap.set_cell(i+1, j, Tiles.GROUND)
 				if(tilemap.get_cell(i, j) == Tiles.OUTSIDE): 
 					tilemap.set_cell(i, j, Tiles.GROUND)
 
