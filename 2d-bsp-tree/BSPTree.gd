@@ -15,6 +15,9 @@ var rooms = []
 # array of Rect2
 var connections = []
 
+# ======
+# Lifecycle Methods 
+# ======
 func _init(
 	_bounds: Rect2,
 	_min_room_size: int,
@@ -24,13 +27,30 @@ func _init(
 	min_room_size = _min_room_size
 	min_room_factor = _min_room_factor
 
+# ======
+# Public Methods 
+# ======
 func generate():
-	start_tree()
-	create_leaf(0)
-	create_rooms()
-	join_rooms()
+	_start_tree()
+	_create_leaf(0)
+	_create_rooms()
+	_join_rooms()
 
-func start_tree():
+func get_farthest_room_from_point(start_position: Vector2) -> Dictionary:
+	var end_room = rooms.front()
+	for room in rooms:
+		var dst_room = start_position.distance_to(room.center)
+		var dst_end_room = start_position.distance_to(end_room.center)
+		
+		if dst_room > dst_end_room:
+			end_room = room
+	
+	return end_room
+
+# ======
+# Private Methods 
+# ======
+func _start_tree():
 	rooms = []
 	connections = []
 	tree = {}
@@ -45,7 +65,7 @@ func start_tree():
 	}
 	leaf_id += 1
 
-func create_leaf(parent_id):
+func _create_leaf(parent_id):
 	var x = tree[parent_id].x
 	var y = tree[parent_id].y
 	var w = tree[parent_id].w
@@ -102,10 +122,10 @@ func create_leaf(parent_id):
 		leaves.append([tree[parent_id].l, tree[parent_id].r])
 
 		# try and create more leaves
-		create_leaf(tree[parent_id].l)
-		create_leaf(tree[parent_id].r)
+		_create_leaf(tree[parent_id].l)
+		_create_leaf(tree[parent_id].r)
 
-func create_rooms():
+func _create_rooms():
 	for leaf_id in tree:
 		var leaf = tree[leaf_id]
 		if leaf.has("l"): continue # if node has children, don't build rooms
@@ -124,13 +144,13 @@ func create_rooms():
 			room.center.y = floor(room.y + room.h/2)
 			rooms.append(room)
 
-func join_rooms():
+func _join_rooms():
 	for sister in leaves:
 		var a = sister[0]
 		var b = sister[1]
-		connect_leaves(tree[a], tree[b])
+		_connect_leaves(tree[a], tree[b])
 
-func connect_leaves(leaf1, leaf2):
+func _connect_leaves(leaf1, leaf2):
 	var x = min(leaf1.center.x, leaf2.center.x)
 	var y = min(leaf1.center.y, leaf2.center.y)
 	var w = 1

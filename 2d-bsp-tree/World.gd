@@ -9,12 +9,20 @@ export(int) var map_h = 50
 export(int) var min_room_size = 8
 export(float, 0.2, 0.5) var min_room_factor = 0.4
 
+const Player = preload("res://common/Player.tscn")
+const Exit = preload("res://common/Exit.tscn")
+
 enum Tiles { OUTSIDE, GROUND }
 
 var tilemap = null
+var props = null
+
+func _ready():
+	generate_level()
 
 func generate_level() -> void:
 	tilemap = $TileMapWalls
+	props = $Props
 	if not tilemap:
 		return
 
@@ -26,12 +34,26 @@ func generate_level() -> void:
 	
 	bsp_tree.generate()
 
-	tilemap.clear()
+	clear()
 	fill_outside()
 	fill_rooms(bsp_tree.rooms)
 	fill_rooms_connections(bsp_tree.connections)
 	clear_deadends()
 	tilemap.update_bitmask_region(Vector2.ZERO, Vector2(map_w, map_h))
+	
+	render_props(bsp_tree)
+	
+func render_props(bsp: BSPTree) -> void:
+	var player_position = bsp.rooms.front().center
+	var player = Player.instance()
+	props.add_child(player)
+	player.position = player_position * 32
+	
+	var exit = Exit.instance()
+	props.add_child(exit)
+	var end_room = bsp.get_farthest_room_from_point(player_position)
+	exit.position = end_room.center * 32
+	exit.connect("leaving_level", self, "_on_leaving_level")
 	
 func fill_outside():
 	for x in range(0, map_bounds.size.x):
@@ -75,5 +97,14 @@ func check_nearby(x, y):
 	if tilemap.get_cell(x+1, y)   == Tiles.OUTSIDE:  count += 1
 	return count
 
+func clear() -> void:
+	tilemap.clear()
+	for n in props.get_children():
+		props.remove_child(n)
+		n.queue_free()
+
 func set_redraw(_value: bool) -> void:
 	generate_level()
+	
+func _on_leaving_level() -> void:
+	get_tree().reload_current_scene()
